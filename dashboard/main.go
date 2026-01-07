@@ -163,7 +163,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		t, _ := template.New("login").Parse(loginHTML)
-		t.Execute(w, "❌ Incorrect Username or Password")
+		t.Execute(w, "Incorrect Username or Password")
 		return
 	}
 	t, _ := template.New("login").Parse(loginHTML)
@@ -228,7 +228,6 @@ func main() {
 	http.HandleFunc("/toggle", toggleHandler)
 	http.HandleFunc("/", homeHandler)
 	
-	// THIS LINE WAS MISSING AND CAUSED THE ERROR:
-	log.Println("🌍 Web Server running at http://localhost:8080")
+	log.Println("Web Server running at http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
