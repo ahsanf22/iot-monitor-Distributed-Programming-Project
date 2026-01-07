@@ -15,10 +15,10 @@ var humidity = 45.0
 var cmdHandler mqtt.MessageHandler = func(client mqtt.Client, msg mqtt.Message) {
 	command := string(msg.Payload())
 	if command == "STOP" {
-		log.Println("🛑 COMMAND: Stopping Sensor...")
+		log.Println("COMMAND: Stopping Sensor...")
 		shouldRun = false
 	} else if command == "START" {
-		log.Println("✅ COMMAND: Starting Sensor...")
+		log.Println("COMMAND: Starting Sensor...")
 		shouldRun = true
 	}
 }
@@ -28,10 +28,10 @@ func main() {
 	opts.SetClientID("go_sensor_1")
 	client := mqtt.NewClient(opts)
 	if token := client.Connect(); token.Wait() && token.Error() != nil {
-		log.Fatal("❌ Mosquitto is not running.")
+		log.Fatal("Mosquitto is not running.")
 	}
 	client.Subscribe("home/sensor1/cmd", 0, cmdHandler)
-	log.Println("✅ Sensor 1 Active (Temp + Humidity)...")
+	log.Println("Sensor 1 Active (Temp + Humidity)...")
 
 	for {
 		if shouldRun {
